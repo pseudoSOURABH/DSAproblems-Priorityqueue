@@ -1,0 +1,47 @@
+// C++ implementation of the approach
+#include<bits/stdc++.h>
+using namespace std;
+
+// Function to return the minimized sum
+int getMinSum(int arr[], int n)
+{
+	int i, sum = 0;
+
+	// Priority queue to store the elements of the array
+	// and retrieve the minimum element efficiently
+	priority_queue<int, vector<int>, greater<int> > pq;
+
+	// Add all the elements
+	// to the priority queue
+	for (i = 0; i < n; i++)
+		pq.push(arr[i]);
+
+
+
+	while (pq.size() > 1)
+	{
+
+		// Remove and get the minimum
+		// element from the queue
+		int min = pq.top();
+
+		pq.pop();
+
+		// Remove and get the second minimum
+		// element (currently minimum)
+		int secondMin = pq.top();
+		
+		pq.pop();
+
+		// Update the sum
+		sum += (min + secondMin);
+
+		// Add the sum of the minimum
+		// elements to the queue
+		pq.push(min + secondMin);
+	}
+
+	// Return the minimized sum
+	return sum;
+}
+
